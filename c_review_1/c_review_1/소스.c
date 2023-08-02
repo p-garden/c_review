@@ -1,9 +1,7 @@
 #include <stdio.h>
 int main() {
-	printf("ss");
-
-
-
-
-
+	printf("   A\n");
+	printf("  A A\n");
+	printf(" A   A\n");
+	printf("A A A A\n");
 }
