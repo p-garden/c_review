@@ -1,7 +1,10 @@
 #include <stdio.h>
 int main() {
-	int m, n;
-	printf("생일 입력\n입력 월 일: ");
-	scanf("%d %d", &m, &n);
-	printf("생일은 %d월 %d일입니다.", m, n);
+	int m, n,s;
+	printf("첫 번째 정수: ");
+	scanf("%d", &m);
+	printf("두 번째 정수: ");
+	scanf("%d", &n);
+	s = m + n;
+	printf("합: %d", s);
 }
