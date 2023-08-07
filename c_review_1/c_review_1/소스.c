@@ -1,7 +1,10 @@
 #include <stdio.h>
 int main() {
-	printf("   A\n");
-	printf("  A A\n");
-	printf(" A   A\n");
-	printf("A A A A\n");
+	int n;
+	scanf("%d", &n);
+	printf("%d%d%d%d%d%d\n", n, n, n, n, n, n);
+	printf("%d    %d\n", n,n);
+	printf("%d    %d\n", n,n);
+	printf("%d%d%d%d%d%d\n", n, n, n, n, n, n);
+
 }
