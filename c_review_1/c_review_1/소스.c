@@ -1,11 +1,9 @@
 #include <stdio.h>
 int main() {
-	int a, b, c;
-	printf("가격 입력: ");
-	scanf("%d%d%d",&a,&b,&c);
-	printf("상품1:%8d원\n",a);
-	printf("상품2:%8d원\n", b);
-	printf("상품3:%8d원\n", c);
+	float a;
+	printf("실수 입력: ");
+	scanf("%f", &a);
+	printf("반올림 정수 출력: %d", (int)(a+0.5));
 
 
 }
