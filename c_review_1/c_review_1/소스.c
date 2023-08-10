@@ -1,9 +1,9 @@
 #include <stdio.h>
 int main() {
 	char a;
-	printf("소문자 입력: ");
+	printf("대문자 입력: ");
 	scanf("%c", &a);
-	printf("대문자 출력: %c", a-'a' + 'A');
+	printf("소문자 출력: %c", a+'a' - 'A');
 
 
 }
