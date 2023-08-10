@@ -1,10 +1,8 @@
 #include <stdio.h>
 int main() {
-	int m, n,s;
-	printf("첫 번째 정수: ");
-	scanf("%d", &m);
-	printf("두 번째 정수: ");
-	scanf("%d", &n);
-	s = m + n;
-	printf("합: %d", s);
+	double a, b;
+	a = 4.2, b = 5.1;
+	printf("첫 번째 수: %lf\n", a);
+	printf("두 번째 수: %lf\n", b);
+	printf("합: %lf\n", (a + b));
 }
