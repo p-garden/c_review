@@ -1,9 +1,8 @@
 #include <stdio.h>
 int main() {
-	char a;
-	printf("대문자 입력: ");
-	scanf("%c", &a);
-	printf("소문자 출력: %c", a+'a' - 'A');
-
-
+	int n;
+	printf("입력: ");
+	scanf("%x", &n);
+	printf("10진수    : %d\n", n);
+	printf("8진수    : %o\n", n);
 }
