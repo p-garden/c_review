@@ -1,9 +1,9 @@
 #include <stdio.h>
 int main() {
-	float a;
-	printf("실수 입력: ");
-	scanf("%f", &a);
-	printf("반올림 정수 출력: %d", (int)(a+0.5));
+	int y, m, d;
+	scanf("%d/%d/%d",&y,&m,&d);
+	printf("%d년 %d월 %d일",y,m,d);
+
 
 
 }
