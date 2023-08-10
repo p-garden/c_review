@@ -1,9 +1,9 @@
 #include <stdio.h>
 int main() {
 	char a;
-	printf("문자형 입력(%%c) : ");
+	printf("소문자 입력: ");
 	scanf("%c", &a);
-	printf("문자로 출력(%%c) : %c\n", a);
-	printf("문자로 출력(%%d) : %d\n", (a-'0'));
+	printf("%c는 %d번째 영어 소문자\n", a,(int)a - 'a');
+
 
 }
