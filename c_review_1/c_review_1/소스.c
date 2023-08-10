@@ -1,11 +1,8 @@
 #include <stdio.h>
 int main() {
-	int a;
-	char b;
-	printf("입력: ");
-	scanf("%d", &a);
-	b = a;
-	printf("출력(int)->%d\n", a);
-	printf("출력(char)->%d\n", b);
+	printf("큰 따옴표는 \"입니다.\n");
+	printf("작은 따옴표는 \'입니다.\n");
+	printf("문자 A는 \'A\'입니다.\n");
+	printf("큰 따옴표의 이스케이프 시퀀스는 \\\"입니다.");
 
 }
