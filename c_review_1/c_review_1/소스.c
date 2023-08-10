@@ -1,8 +1,9 @@
 #include <stdio.h>
 int main() {
-	printf("큰 따옴표는 \"입니다.\n");
-	printf("작은 따옴표는 \'입니다.\n");
-	printf("문자 A는 \'A\'입니다.\n");
-	printf("큰 따옴표의 이스케이프 시퀀스는 \\\"입니다.");
+	char a;
+	printf("문자형 입력(%%c) : ");
+	scanf("%c", &a);
+	printf("문자로 출력(%%c) : %c\n", a);
+	printf("문자로 출력(%%d) : %d\n", (a-'0'));
 
 }
