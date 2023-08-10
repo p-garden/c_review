@@ -1,9 +1,9 @@
 #include <stdio.h>
 int main() {
-	char a;
-	printf("소문자 입력: ");
-	scanf("%c", &a);
-	printf("%c는 %d번째 영어 소문자\n", a,(int)a - 'a');
+	int a;
+	printf("정수 입력(0~25) :");
+	scanf("%d", &a);
+	printf("%d번째 영어 대문자는 %c\n", a,'A'+a);
 
 
 }
