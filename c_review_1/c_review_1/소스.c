@@ -1,8 +1,11 @@
 #include <stdio.h>
 int main() {
-	double a, b;
-	a = 4.2, b = 5.1;
-	printf("첫 번째 수: %lf\n", a);
-	printf("두 번째 수: %lf\n", b);
-	printf("합: %lf\n", (a + b));
+	int a;
+	char b;
+	printf("입력: ");
+	scanf("%d", &a);
+	b = a;
+	printf("출력(int)->%d\n", a);
+	printf("출력(char)->%d\n", b);
+
 }
