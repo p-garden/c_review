@@ -1,8 +1,9 @@
 #include <stdio.h>
 int main() {
+	char a;
 	int n,m;
-	scanf("%d", &n);
-	m = (20 <= n && n  <= 30);
+	scanf("%c", &a);
+	m = ('a' <= a && a <= 'z')|| ( 'A' <= a && a <= 'Z');
 	printf("%d", m);
 
 	
