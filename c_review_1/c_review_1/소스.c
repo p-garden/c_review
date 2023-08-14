@@ -1,8 +1,9 @@
 #include <stdio.h>
 int main() {
-	int n,m;
-	scanf("%d%d", &n, &m);
-	m > n ? printf("%d\n%d", m/n,m%n) : printf("%d\n%d", n/m,n%m);
+	char a, b;
+	scanf("%c", &a);
+	b = ('a' <= a && a <= 'z') ? a - ('a' - 'A') : a + ('a' - 'A');
+	printf("%c", b);
 
 	
 
