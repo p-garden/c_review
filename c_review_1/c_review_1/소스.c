@@ -1,9 +1,10 @@
 #include <stdio.h>
 int main() {
-	int n,m;
-	scanf("%d", &n);
-	m = (n + 500) / 1000 * 1000;
-	printf("%d", m);
+	float n,r,m;
+	scanf("%f", &n);
+	r = n / 3.14 /2.0;
+	m = r * r*3.14;
+	printf("%.0f", m);
 
 	
 
