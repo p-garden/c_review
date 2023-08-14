@@ -1,9 +1,8 @@
 #include <stdio.h>
 int main() {
-	char a, b;
-	scanf("%c", &a);
-	b = ('a' <= a && a <= 'z') ? a - ('a' - 'A') : a + ('a' - 'A');
-	printf("%c", b);
+	int y;
+	scanf("%d", &y);
+	y % 4 == 0 ? y % 100 == 0 ? y % 400 == 0 ? printf("L") : printf("C") : printf("L") : printf("C");
 
 	
 
