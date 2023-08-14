@@ -1,8 +1,9 @@
 #include <stdio.h>
 int main() {
-	int y;
-	scanf("%d", &y);
-	y % 4 == 0 ? y % 100 == 0 ? y % 400 == 0 ? printf("L") : printf("C") : printf("L") : printf("C");
+	int m;
+	scanf("%d", &m);
+	(m / 100 == m / 10 % 10 && m / 10 % 10 == m % 10) ? printf("3") : (m / 100 != m / 10 % 10 && m / 10 % 10 != m % 10 && m / 100 != m % 10) ? printf("1") : printf("2");
+	
 
 	
 
