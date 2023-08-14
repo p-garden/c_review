@@ -1,10 +1,9 @@
 #include <stdio.h>
 int main() {
-	float n,r,m;
-	scanf("%f", &n);
-	r = n / 3.14 /2.0;
-	m = r * r*3.14;
-	printf("%.0f", m);
+	int n,m;
+	scanf("%d", &n);
+	m = (20 <= n && n  <= 30);
+	printf("%d", m);
 
 	
 
