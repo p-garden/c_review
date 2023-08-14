@@ -1,8 +1,8 @@
 #include <stdio.h>
 int main() {
-	int y, m, d;
-	scanf("%d/%d/%d",&y,&m,&d);
-	printf("%d³â %d¿ù %dÀÏ",y,m,d);
+	int n;
+	scanf("%d", &n);
+	printf("%dTTHO %dTHO %dHUN %dTEN %d", n / 10000, (n / 1000 %10), (n / 100 %10), (n / 10%10), n % 10);
 
 
 
