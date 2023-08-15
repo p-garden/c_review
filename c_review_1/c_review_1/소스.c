@@ -1,37 +1,26 @@
 #include <stdio.h>
 int main() {
-	int kor,eng,mat;
-	float avg;
-	scanf("%d%d%d", &kor, &eng, &mat);
-	avg = (kor + eng + mat) / 3.0;
-	if (avg > 91.5) {
-		printf("A");
-		if (kor == 100 || eng == 100 || mat == 100)
-			printf("GOOD");
-		if (kor < 60 || eng < 60 || mat < 60)
-			printf("BAD");
-	}
-	else if (avg > 85.5) {
-		printf("B");
-		if (kor == 100 || eng == 100 || mat == 100)
-			printf("GOOD");
-		if (kor < 60 || eng < 60 || mat < 60)
-			printf("BAD");
-	}
-	else if (avg > 80.5) {
-		printf("C");
-		if (kor == 100 || eng == 100 || mat == 100)
-			printf("GOOD");
-		if (kor < 60 || eng < 60 || mat < 60)
-			printf("BAD");
-	}
-	else {
-		printf("F");
-		if (kor == 100 || eng == 100 || mat == 100)
-			printf("GOOD");
-		if (kor < 60 || eng < 60 || mat < 60)
-			printf("BAD");
-	}
+	int a1,a2,a3,g1,g2,g3,s=0,b=0;
+	scanf("%d%d%d", &a1, &a2, &a3);
+	scanf("%d%d%d", &g1, &g2, &g3);
+	if (a1 == g1)
+		s++;
+	if (a2 == g2)
+		s++;
+	if (a3 == g3)
+		s++;
+	if (a1 == g2)
+		b++;
+	if (a1 == g3)
+		b++;
+	if (a2 == g1)
+		b++;
+	if (a2 == g3)
+		b++;
+	if (a3 == g1)
+		b++;
+	if (a3 == g2)
+		b++;
 
-
+	printf("%dS%dB", s, b);
 }
