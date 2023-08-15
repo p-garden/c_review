@@ -1,24 +1,22 @@
 #include <stdio.h>
 int main() {
-	int ans,gus;
-	scanf("%d", &ans);
-	scanf("%d", &gus);
-	if (ans == gus)
-		printf("RIGHT\n");
-	else {
-		if (ans > gus)
-			printf("UP\n");
-		else
-			printf("DOWN\n");
-		scanf("%d", &gus);
-		if (ans == gus)
-			printf("RIGHT\n");
-		else 
-			if (ans > gus)
-				printf("UP\n");
+	int y;
+	scanf("%d", &y);
+
+	if (y % 4 == 0) {
+		if (y % 100 == 0)
+			if (y % 400 == 0)
+				printf("leap year");
 			else
-				printf("DOWN\n");
+				printf("common year");
+		else
+			printf("leap year");
 	}
+	else
+		printf("common year");
+
+
+	
 
 	
 	
