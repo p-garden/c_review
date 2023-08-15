@@ -1,19 +1,11 @@
 #include <stdio.h>
 int main() {
-	int a, b, c, d, e,sum=0;
-	scanf("%d%d%d%d%d", &a, &b, &c, &d, &e);
-	if (a > 0)
-		sum += a;
-	if (b > 0)
-		sum += b;
-	if (c > 0)
-		sum += c;
-	if (d > 0)
-		sum += d;
-	if (e > 0)
-		sum += e;
-	printf("%d", sum);
-
-
-
+	char a;
+	scanf("%c", &a);
+	if ('a' <= a && a <= 'z')
+		printf("%c", a - ('a' - 'A'));
+	else if ('A' <= a && a <= 'Z')
+		printf("%c", a + ('a' - 'A'));
+	else
+		printf("none");
 }
