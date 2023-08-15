@@ -1,27 +1,37 @@
 #include <stdio.h>
 int main() {
-	int y1,m1,d1,y2,m2,d2;
-	scanf("%d/%d/%d", &y1, &m1, &d1);
-	scanf("%d/%d/%d", &y2, &m2, &d2);
-	if (y1 < y2)
-		printf("%d/%d/%d", y1, m1, d1);
-	else if (y2 < y1)
-		printf("%d/%d/%d", y2, m2, d2);
-	else {
-		if (m1 < m2)
-			printf("%d/%d/%d", y1, m1, d1);
-		else if (m2 < m1)
-			printf("%d/%d/%d", y2, m2, d2);
-		else {
-			if (d1 < d2)
-				printf("%d/%d/%d", y1, m1, d1);
-			else if (d2 < d1)
-				printf("%d/%d/%d", y2, m2, d2);
-			else
-				printf("%d/%d/%d", y1, m1, d1);
-		}
+	int kor,eng,mat;
+	float avg;
+	scanf("%d%d%d", &kor, &eng, &mat);
+	avg = (kor + eng + mat) / 3.0;
+	if (avg > 91.5) {
+		printf("A");
+		if (kor == 100 || eng == 100 || mat == 100)
+			printf("GOOD");
+		if (kor < 60 || eng < 60 || mat < 60)
+			printf("BAD");
 	}
-	
+	else if (avg > 85.5) {
+		printf("B");
+		if (kor == 100 || eng == 100 || mat == 100)
+			printf("GOOD");
+		if (kor < 60 || eng < 60 || mat < 60)
+			printf("BAD");
+	}
+	else if (avg > 80.5) {
+		printf("C");
+		if (kor == 100 || eng == 100 || mat == 100)
+			printf("GOOD");
+		if (kor < 60 || eng < 60 || mat < 60)
+			printf("BAD");
+	}
+	else {
+		printf("F");
+		if (kor == 100 || eng == 100 || mat == 100)
+			printf("GOOD");
+		if (kor < 60 || eng < 60 || mat < 60)
+			printf("BAD");
+	}
 
 
 }
