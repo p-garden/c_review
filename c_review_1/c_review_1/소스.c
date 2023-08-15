@@ -1,21 +1,26 @@
 #include <stdio.h>
 int main() {
-	int a,b,c;
-	scanf("%d%d%d", &a, &b, &c);
+	int ans,gus;
+	scanf("%d", &ans);
+	scanf("%d", &gus);
+	if (ans == gus)
+		printf("RIGHT\n");
+	else {
+		if (ans > gus)
+			printf("UP\n");
+		else
+			printf("DOWN\n");
+		scanf("%d", &gus);
+		if (ans == gus)
+			printf("RIGHT\n");
+		else 
+			if (ans > gus)
+				printf("UP\n");
+			else
+				printf("DOWN\n");
+	}
 
-	if (a > b && b > c)
-		printf("%d %d", a, c);
-	else if (a > c && c > b)
-		printf("%d %d", a, b);
-	else if (b > a && a > c)
-		printf("%d %d", b, c);
-	else if (b > c && c > a)
-		printf("%d %d", b, a);
-	else if (c > a && a > b)
-		printf("%d %d", c, b);
-	else if (c > b && b > a)
-		printf("%d %d", c, a);
-
+	
 	
 
 
