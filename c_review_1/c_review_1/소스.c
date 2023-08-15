@@ -1,14 +1,26 @@
 #include <stdio.h>
 int main() {
-	int i;
-	char a;
-	scanf("%c%d",&a ,&i);
-	if ('a' <= a && a <= 'z')
-		printf("%c", (a -'a' + i) % 26 +'a' );
-	else if ('A' <= a && a <='Z')
-		printf("%c", (a - 'A' + i) % 26 + 'A');
-	else
-		printf("%c", a);
+	int a, b, c, d, e,max,min;
+	scanf("%d%d%d%d%d",&a, &b, &c, &d, &e);
+	max = a, min = a;
+	if (max < b)
+		max = b;
+	if (max < c)
+		max = c;
+	if (max < d)
+		max = d;
+	if (max < e)
+		max = e;
 
+	if (min > b)
+		min = b;
+	if (min > c)
+		min = c;
+	if (min > d)
+		min = d;
+	if (min > e)
+		min = e;
 
+	printf("max: %d\nmin: %d\n", max, min);
+	
 }
