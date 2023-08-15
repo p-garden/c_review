@@ -1,29 +1,22 @@
 #include <stdio.h>
 int main() {
-	int a;
-	scanf("%d", &a);
-	if (a % 2 == 0)
-		if (a % 3 == 0)
-			if (a % 5 == 0)
-				printf("A");
-			else
-				printf("B");
-		else
-			if (a % 5 == 0)
-				printf("C");
-			else
-				printf("E");
-	else
-		if (a % 3 == 0)
-			if (a % 5 == 0)
-				printf("D");
-			else
-				printf("E");
-		else
-			if (a % 5 == 0)
-				printf("E");
-			else
-				printf("N");
+	int a,b,c;
+	scanf("%d%d%d", &a, &b, &c);
+
+	if (a > b && b > c)
+		printf("%d %d", a, c);
+	else if (a > c && c > b)
+		printf("%d %d", a, b);
+	else if (b > a && a > c)
+		printf("%d %d", b, c);
+	else if (b > c && c > a)
+		printf("%d %d", b, a);
+	else if (c > a && a > b)
+		printf("%d %d", c, b);
+	else if (c > b && b > a)
+		printf("%d %d", c, a);
+
+	
 
 
 }
