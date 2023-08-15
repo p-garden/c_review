@@ -1,11 +1,29 @@
 #include <stdio.h>
 int main() {
-	char a;
-	scanf("%c", &a);
-	if ('a' <= a && a <= 'z')
-		printf("%c", a - ('a' - 'A'));
-	else if ('A' <= a && a <= 'Z')
-		printf("%c", a + ('a' - 'A'));
+	int a;
+	scanf("%d", &a);
+	if (a % 2 == 0)
+		if (a % 3 == 0)
+			if (a % 5 == 0)
+				printf("A");
+			else
+				printf("B");
+		else
+			if (a % 5 == 0)
+				printf("C");
+			else
+				printf("E");
 	else
-		printf("none");
+		if (a % 3 == 0)
+			if (a % 5 == 0)
+				printf("D");
+			else
+				printf("E");
+		else
+			if (a % 5 == 0)
+				printf("E");
+			else
+				printf("N");
+
+
 }
