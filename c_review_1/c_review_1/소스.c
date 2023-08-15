@@ -1,7 +1,12 @@
 #include <stdio.h>
 int main() {
-	char a, b;
-	scanf("%c", &a);
-	b = ('a' <= a && a <= 'z') ? a - ('a' - 'A') : a;
-	printf("%c", b);
+	int a;
+	scanf("%d", &a);
+	if (a < 0)
+		printf("cold, indoor");
+	else if (a < 40)
+		printf("moderate, outdoor");
+	else
+		printf("hot, indoor");
+
 }
