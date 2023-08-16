@@ -1,10 +1,18 @@
 #include <stdio.h>
 int main() {
-	int a,sum=0;
-	scanf("%d", &a);
-	while (a != 0) {
-		sum += a;
-		scanf("%d", &a);
+	int ans,gus,cnt=0;
+	scanf("%d", &ans);
+	do {
+		scanf("%d", &gus);
+		if (ans < gus)
+			printf("%d>?\n", gus);
+		else if (ans > gus)
+			printf("%d<?\n", gus);
+		else
+			printf("%d==?\n", gus);
+		cnt++;
 	}
-	printf("%d", sum);
+
+	while (ans != gus);
+	printf("%d", cnt);
 }
