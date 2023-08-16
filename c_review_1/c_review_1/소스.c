@@ -1,14 +1,15 @@
 #include <stdio.h>
 int main() {
-	int a,i,j,cnt=0,tmp;
+	int a,i,j,sum,tmp;
 	scanf("%d", &a);
-	for (i = 1; i <= a; i++) {
-		tmp = i;
-		while (tmp) {
-			if (tmp % 10 == 3)
-				cnt++;
-			tmp /= 10;
+	while (a/10) {
+		sum = 0;
+		while (a) {
+			tmp = a % 10;
+			sum += tmp;
+			a /= 10;
 		}
+		a = sum;
 	}
-	printf("%d", cnt);
+	printf("%d", a);
 }
