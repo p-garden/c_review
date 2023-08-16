@@ -1,6 +1,6 @@
 #include <stdio.h>
 int main() {
-	int a,b,sum=0,cnt=0,tmp,i;
+	int a,b,cnt,cnt2=0,tmp,i,j;
 
 	scanf("%d%d", &a, &b);
 
@@ -9,22 +9,15 @@ int main() {
 		a = b;
 		b = tmp;
 	}
-	for (i = a; i <= b; i++) {
-		if (i % 2 == 0) {
-			printf("%d ", i);
-			sum += i;
-			cnt++;
-		}
-	}
-	printf("cnt=%d sum=%d\n", cnt,sum);
-	cnt = 0, sum = 0;
 	
 	for (i = a; i <= b; i++) {
-		if (i % 3 == 0) {
-			printf("%d ", i);
-			sum += i;
-			cnt++;
+		cnt = 0;
+		for (j = 1; j <= i; j++) {
+			if (i%j == 0)
+				cnt++;
 		}
+		if (cnt%2 ==0)
+			cnt2++;
 	}
-	printf("cnt=%d sum=%d\n", cnt, sum);
+	printf("%d", cnt2);
 }
