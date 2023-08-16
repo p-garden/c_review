@@ -1,23 +1,22 @@
 #include <stdio.h>
 int main() {
-	int a,b,cnt,cnt2=0,tmp,i,j;
+	int a,i,j;
 
-	scanf("%d%d", &a, &b);
+	scanf("%d", &a);
 
-	if (a > b) {
-		tmp = a;
-		a = b;
-		b = tmp;
-	}
-	
-	for (i = a; i <= b; i++) {
-		cnt = 0;
-		for (j = 1; j <= i; j++) {
-			if (i%j == 0)
-				cnt++;
+	for (i = 1; i <= (2*a-1); i++) {
+		if (i <= a) {
+			for (j = a; j > i; j--) 
+				printf(" ");			
+			for (j = 0; j < (i*2-1); j++)
+				printf("*");
 		}
-		if (cnt%2 ==0)
-			cnt2++;
+		else {
+			for (j = 0; j < (i - a); j++)
+				printf(" ");
+			for (j = 0; j < ((2 * a - 1) - (2 * (i - a))); j++)
+				printf("*");
+		}
+		printf("\n");
 	}
-	printf("%d", cnt2);
 }
