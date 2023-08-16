@@ -11,6 +11,7 @@ int main() {
 		else
 			printf("%d==?\n", gus);
 		cnt++;
+	
 	}
 
 	while (ans != gus);
