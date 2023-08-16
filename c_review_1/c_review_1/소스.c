@@ -1,15 +1,15 @@
 #include <stdio.h>
 int main() {
-	int a,i,j,sum,tmp;
+	int a,i,j,k;
 	scanf("%d", &a);
-	while (a/10) {
-		sum = 0;
-		while (a) {
-			tmp = a % 10;
-			sum += tmp;
-			a /= 10;
+
+	for (i = 1; i <= 6; i++) {
+		for (j = 1; j <= 6; j++) {
+			for (k = 1; k <= 6; k++) {
+				if (i + j + k == a)
+					printf("%d %d %d\n", i, j, k);
+			}
 		}
-		a = sum;
 	}
-	printf("%d", a);
+	
 }
