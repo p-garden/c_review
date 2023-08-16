@@ -1,15 +1,14 @@
 #include <stdio.h>
 int main() {
-	int a,b,i,j,mul=1;
-	scanf("%d%d", &a,&b);
-	for (i = a; i <= b; i++) {
-		printf("%d!=1", i);
-		for (j = 2; j <= i; j++) {
-			printf("*%d", j);
-			mul *= j;
+	int a,i,j,cnt=0,tmp;
+	scanf("%d", &a);
+	for (i = 1; i <= a; i++) {
+		tmp = i;
+		while (tmp) {
+			if (tmp % 10 == 3)
+				cnt++;
+			tmp /= 10;
 		}
-		printf("=%d\n", mul);
-		mul = 1;
 	}
-		
+	printf("%d", cnt);
 }
