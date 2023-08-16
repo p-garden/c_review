@@ -1,18 +1,25 @@
 #include <stdio.h>
 int main() {
-	int a,g,even=0,odd=0,tmp;
+	int a,g,tmp,i,j;
 	scanf("%d", &a);
-	while (a) {
-		tmp = a % 10;
-		if (tmp % 2 == 0) {
-			even *= 10;
-			even += tmp;
+	while (a>1 && a % 3 != 0) {
+		for (i = 1; i <= a; i++) {
+			if (i != 1 && i != a) {
+				for (j = 0; j < a - i; j++)
+					printf(" ");
+				printf("X");
+				for (j = 0; j < (i - 1) * 2 - 1; j++)
+					printf("O");
+				printf("X");
+			}
+			else {
+				for (j = 0; j < a - i; j++)
+					printf(" ");
+				for(j = 0; j < (2 * i) - 1; j++)
+					printf("X");
+			}
+			printf("\n");
 		}
-		else {
-			odd *= 10;
-			odd += tmp;
-		}
-		a /= 10;
+		scanf("%d", &a);
 	}
-	printf("%d %d", even,odd);
 }
