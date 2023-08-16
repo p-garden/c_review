@@ -1,19 +1,16 @@
 #include <stdio.h>
 int main() {
-	int ans,gus,cnt=0;
-	scanf("%d", &ans);
-	do {
-		scanf("%d", &gus);
-		if (ans < gus)
-			printf("%d>?\n", gus);
-		else if (ans > gus)
-			printf("%d<?\n", gus);
-		else
-			printf("%d==?\n", gus);
-		cnt++;
-	
+	int a,b,tmp,i,gcd;
+	scanf("%d%d", &a, &b);
+	if (a > b) {
+		tmp = a;
+		a = b; 
+		b = tmp;
 	}
-
-	while (ans != gus);
-	printf("%d", cnt);
+	for (i = 1; i <= a; i++) {
+		if (a % i == 0 && b % i == 0)
+			gcd = i;
+	}
+	
+	printf("%d", gcd);
 }
