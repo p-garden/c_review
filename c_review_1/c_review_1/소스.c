@@ -1,24 +1,18 @@
 #include <stdio.h>
 int main() {
-	int a,g,tmp,cnt1=0,cnt2=0,cnt3=0;
-
-
+	int a,g,even=0,odd=0,tmp;
 	scanf("%d", &a);
-	scanf("%d", &g);
-	while (g) {
-		while (g) {
-			tmp = g % 10;
-			if (tmp == a)
-				cnt1++;
-			else if (tmp < a)
-				cnt2++;
-			else
-				cnt3++;
-			g /= 10;
+	while (a) {
+		tmp = a % 10;
+		if (tmp % 2 == 0) {
+			even *= 10;
+			even += tmp;
 		}
-		scanf("%d", &g);
+		else {
+			odd *= 10;
+			odd += tmp;
+		}
+		a /= 10;
 	}
-	printf("%d %d %d", cnt1, cnt2, cnt3);
-
-	
+	printf("%d %d", even,odd);
 }
