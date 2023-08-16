@@ -1,14 +1,20 @@
 #include <stdio.h>
 int main() {
-	int a,i,sum=0;
-	scanf("%d", &a);
+	int a,sum=0,cnt=0,tmp;
 
-	for (i = 1; ;i++) {
-		sum += i;
-		if (i == a)
+	scanf("%d", &a);
+	while (a > 0) {
+		tmp = a;
+		scanf("%d", &a);
+		if (tmp <= 0)
 			break;
+		if (tmp> 100)
+			continue;
+		sum += tmp;
+		cnt++;
 	}
-	printf("%d", sum);
+	
+	printf("%d %.2f %d", sum,(float)sum/cnt, cnt);
 
 	
 }
