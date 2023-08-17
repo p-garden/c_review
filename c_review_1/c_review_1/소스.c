@@ -1,28 +1,40 @@
 #include <stdio.h>
 int main() {
-	int n,m,cnt,max,min,tmp;
-	scanf("%d", &n);
-	max = n, min = n;
-	while (n) {
-		m = 0, tmp = n;
-		while (tmp) {
-			m = tmp % 10;
-			n *= 10;
-			n += m;
-			tmp /= 10;
+	int m,n,t,i,j,num,div_n,div,flg_t,cnt,cnt_max=0,max_line;
+	scanf("%d", &m);
+	for (i = 1; i <= m; i++) {
+		scanf("%d%d", &n, &t);
+		div_n = 0;
+		for (j = 1; j <= n; j++) {
+			if (n % j == 0)
+				div_n++;
 		}
-		tmp = n, cnt = 0;
-		while (tmp) {
-			if (tmp % 10 == 3)
+		flg_t = 0, cnt=0;
+		scanf("%d", &num);
+		while (num > 0) {
+			div = 0;
+			for (j = 1; j <= num; j++) {
+				if (num % j == 0)
+					div++;
+			}
+			if (div % t == 0 && flg_t==0) {
+				printf("%d ", num);
+				flg_t++;
 				cnt++;
-			tmp /= 10;
+			}
+			else if (div == div_n) {
+				printf("%d ", num);
+				cnt++;
+			}
+			scanf("%d", &num);
 		}
-		printf("%d %d ", n, cnt);
-		if (n > max)
-			max = n;
-		if (n < min)
-			min = n;
-		scanf("%d", &n);
+		if (cnt == 0)
+			printf("none");
+		if (cnt_max < cnt) {
+			cnt_max = cnt;
+			max_line = i;
+		}
+		printf("\n");
 	}
-	printf("\n%d %d", min, max);
+	printf("%d %d", max_line, cnt_max);
 }
