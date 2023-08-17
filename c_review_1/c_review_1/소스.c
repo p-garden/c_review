@@ -1,25 +1,20 @@
 #include <stdio.h>
 int main() {
-	int a,g,tmp,i,j;
-	scanf("%d", &a);
-	while (a>1 && a % 3 != 0) {
-		for (i = 1; i <= a; i++) {
-			if (i != 1 && i != a) {
-				for (j = 0; j < a - i; j++)
-					printf(" ");
-				printf("X");
-				for (j = 0; j < (i - 1) * 2 - 1; j++)
-					printf("O");
-				printf("X");
-			}
-			else {
-				for (j = 0; j < a - i; j++)
-					printf(" ");
-				for(j = 0; j < (2 * i) - 1; j++)
-					printf("X");
-			}
-			printf("\n");
-		}
-		scanf("%d", &a);
-	}
+	int a,b;
+	float avg;
+	scanf("%d%d", &a, &b);
+	avg = (a *0.4+ b*0.6);
+	if (avg >= 85.5)
+		printf("A ");
+	else if (avg >= 75.5)
+		printf("B ");
+	else if (avg >= 60.0)
+		printf("C ");
+	else
+		printf("F ");
+
+	if (avg >= 60 || b >= 90)
+		printf("PASS");
+	else
+		printf("FAIL");
 }
