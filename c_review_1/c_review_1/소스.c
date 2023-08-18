@@ -1,26 +1,24 @@
 #include <stdio.h>
 int main() {
-	int i,j,flg=0,cnt, a[10];
+	int i,j,tmp, a[5];
 
-	for (i = 0; i <10; i++) 
+	for (i = 0; i <5; i++) 
 		scanf("%d", &a[i]);
-	
-	for (i = 0; i < 10; i++) {
-		for (j = i-1; j >= 0; j--) {
-			if (a[i] == a[j])
-				flg=1;
+
+	for (i = 0; i < 4; i++) {
+		for (j = 0; j < 4-i; j++) {
+			if (a[j] >= a[j+1]) {
+				tmp = a[j];
+				a[j] = a[j+1];
+				a[j+1] = tmp;
+			}
 		}
-		if (flg == 1) {
-			flg = 0;
-			continue;
-		}
-		cnt = 0;
-		for (j = 0; j < 10; j++) {
-			if (a[i] == a[j])
-				cnt++;
-		}
-		printf("%d %d\n", a[i], cnt);
 	}
+	for (i = 0; i < 5; i++)
+		printf("%d\n", a[i]);
+
+	
+	
 	
 	
 }
