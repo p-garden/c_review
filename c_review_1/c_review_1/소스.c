@@ -1,59 +1,70 @@
 #include <stdio.h>
 int main() {
-	int a[20], b[20], i, j, n, max[10], min[10], max_tmp, min_tmp, k,l,h;
-	scanf("%d", &n);
-	for (i = 0; i < n; i++)
-		scanf("%d", &a[i]);
-
-	for (i = 0; i < n; i++) {
-		b[i] = a[n - i - 1];
-		printf(" %d", b[i]);
-	}
-	printf("\n");
-	k = 0;
-	for (i = 0; i < n; i += 3) {
-		max_tmp = a[i], min_tmp = a[i];
-		for (j = i; j < i + 3; j++) {
-			if (j >= n)
-				break;
-			if (max_tmp < a[j])
-				max_tmp = a[j];
-			if (min_tmp > a[j])
-				min_tmp = a[j];
-		}
-		max[k] = max_tmp, min[k] = min_tmp;
-		k++;
-	}
-	for (i = 0; i < k; i++)
-		printf(" %d", max[i]);
-	printf("\n");
-	for (i = 0; i < k; i++)
-		printf(" %d", min[i]);
-	printf("\n");
-
-	l = k;
-	while (l >1 ) {
-		k = l;
-		l = 0;
-		for (i = 0; i < k; i += 3) {
-			max_tmp = max[i], min_tmp = min[i];
-			for (j = i; j < i + 3; j++) {
-				if (j >= k)
-					break;
-				if (max_tmp < max[j])
-					max_tmp = max[j];
-				if (min_tmp > min[j])
-					min_tmp = min[j];
+	int a[101], b[101], i, j,a_n=0,b_n=0,tmp,scn,mul[202],mul_n,flg;
+	
+	for (i = 0; i < 100; i++) {
+		flg = 0;
+		scanf("%d", &scn);
+		for (j = 0; j < i; j++)
+			if (scn == a[j]) {
+				flg = 1;
 			}
-			max[l] = max_tmp, min[l] = min_tmp;
-			l++;
+		if (scn < 0)
+			break;
+		else if (flg == 1) {
+			i--;
+			continue;
 		}
-
-		for (i = 0; i < l; i++)
-			printf(" %d", max[i]);
-		printf("\n");
-		for (i = 0; i < l; i++)
-			printf(" %d", min[i]);
-		printf("\n");
+		else {
+			a[i] = scn;
+			a_n++;
+		}
 	}
+
+	for (i = 0; i < 100; i++) {
+		flg = 0;
+		scanf("%d", &scn);
+		for (j = 0; j < i; j++)
+			if (scn == b[j]) {
+				flg = 1;
+			}
+		if (scn < 0)
+			break;
+		else if (flg == 1) {
+			i--;
+			continue;
+		}
+		else {
+			b[i] = scn;
+			b_n++;
+		}
+	}
+
+	for (i = 0; i < a_n; i++) {
+		mul[i] = a[i];
+	}
+
+	mul_n = a_n;
+	for (i = 0; i < b_n; i++) {
+		for (j = 0; j < a_n; j++) {
+			if (b[i] == a[j])
+				break;
+			if (j == a_n - 1) {
+				mul[mul_n] = b[i];
+				mul_n++;
+			}
+		}
+	}
+	for (i = mul_n-1; i > 0 ; i--) {
+		for (j = 0; j < i; j++) {
+			if (mul[j] > mul[j + 1]) {
+				tmp = mul[j];
+				mul[j] = mul[j + 1];
+				mul[j + 1] = tmp;
+			}
+		}
+	}
+	for (i = 0; i < mul_n; i++)
+		printf(" %d", mul[i]);
+	
 }
