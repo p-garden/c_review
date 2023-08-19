@@ -1,63 +1,18 @@
 #include <stdio.h>
 int main() {
-	int i, j, n, sco[100] = { 0 }, mat[100] = {0}, pos, ins, flg = 0;
-	scanf("%d", &n);
-	for (i = 0; i < n; i++)
-		scanf("%d", &sco[i]);
-	mat[0] = 0;
-	for (i = 1; i < n; i++) {
-		if (i == 1 || i == 2 || i == 4 || i == 8 || i == 16 || i == 32 || i == 64)
-			mat[i] = mat[i - 1] + 1;
-		else
-			mat[i] = mat[i - 1];
-	}
-	pos = n;
-	for (i = 0; i < n; i++) {
-		if (sco[i] < 0 || sco[i] > 100||n>100 ||n<1) {
-			flg = 1;
-			printf("ERROR\n");
-			break;
+	int a[10], b[10],i,s,e;
+	s = 0, e = 9;
+	for (i = 0; i < 10; i++) {
+		scanf("%d", &a[i]);
+		if (a[i] % 2 == 1) {
+			b[s] = a[i];
+			s++;
+		}
+		else {
+			b[e] = a[i];
+			e--;
 		}
 	}
-	if (n == 1)
-		printf("%d", sco[0]);
-	while (mat[n - 1]>0 && flg == 0) {
-		ins = 0;
-		for (i = 0; i < pos; i += 2) {
-			if (pos % 2 == 1) {
-				if (i == pos - 1) {
-					sco[ins] = sco[i];
-					printf("%d ", sco[ins]);
-					ins++;
-				}
-				else if (sco[i] < sco[i + 1]) {
-					sco[ins] = sco[i + 1];
-					printf("%d ", sco[ins]);
-					ins++;
-				}
-				else {
-					sco[ins] = sco[i];
-					printf("%d ", sco[ins]);
-					ins++;
-				}
-			}
-			else {
-				if (sco[i] < sco[i + 1]) {
-					sco[ins] = sco[i + 1];
-					printf("%d ", sco[ins]);
-					ins++;
-				}
-				else {
-					sco[ins] = sco[i];
-					printf("%d ", sco[ins]);
-					ins++;
-				}
-			}
-		}
-		printf("\n");
-		pos = ins;
-		mat[n - 1]--;
-	}
-
-
+	for (i = 0; i < 10; i++) 
+		printf("%d ", b[i]);
 }
