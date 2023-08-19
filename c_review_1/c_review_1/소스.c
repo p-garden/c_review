@@ -1,18 +1,16 @@
 #include <stdio.h>
 int main() {
-	int a[10], b[10],i,s,e;
-	s = 0, e = 9;
-	for (i = 0; i < 10; i++) {
-		scanf("%d", &a[i]);
-		if (a[i] % 2 == 1) {
-			b[s] = a[i];
-			s++;
-		}
-		else {
-			b[e] = a[i];
-			e--;
-		}
+	int a[20], i, f, r, m, tmp;
+	scanf("%d%d%d", &f, &r, &m);
+	for (i = 0; i < 20; i++) 
+		a[i] = i + 1;
+	
+	tmp = a[r];
+	for (i = r ; i >r-m ; i--) {
+		a[i] = a[i - 1];
 	}
-	for (i = 0; i < 10; i++) 
-		printf("%d ", b[i]);
+	a[r - m+1] = tmp;
+	
+	for (i = 0; i < 20; i++)
+		printf("%d ", a[i]);
 }
