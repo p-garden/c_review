@@ -1,14 +1,12 @@
 #include <stdio.h>
-int add(int, int);
+int add(int);
 int main() {
-	int x, y,n,i,sum=0;
-	scanf("%d", &n);
-	for (i = 0; i <= n; ++i) {
-		sum = add(sum, i);
-	}
+	int x, y,n,i,sum;
+	scanf("%d%d", &x, &y);
+	sum = add(y) - add(x - 1);
 	printf("%d", sum);
 }
-int add(x, y) {
-	int z = x + y;
+int add(x) {
+	int z = x * (x + 1) / 2;
 	return z;
 }
