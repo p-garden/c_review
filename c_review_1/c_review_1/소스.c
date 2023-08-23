@@ -1,23 +1,30 @@
 #include <stdio.h>
-int max1=0, max2=0;
-void update_max(int);
+int n=0;
+void die1(int);
+void die2(int,int);
+void die3(int,int,int);
 int main() {
-	int x1,x2;
-	scanf("%d%d", &x1,&x2);
-	if (x1 > x2)
-		max1 = x1, max2 = x2;
-	else
-		max1 = x2, max2 = x1;
-	while (x1) {
-		update_max(x1);
-		scanf("%d", &x1);
+	int i;
+	scanf("%d", &n);
+	for (i = 1; i <= 6; i++) {
+		die1(i);
 	}
-	printf("%d %d", max1, max2);
 }
-void update_max(x) {
-	if (max1 <= x && max2 <= x)
-		max2 = max1, max1 = x;
-	else if (max1 >= x && max2 <= x)
-		max2 = x;
+void die1(x) {
+	int i;
+	for (i = 1; i <= 6; i++) {
+		die2(x, i);
+	}
+
+}
+void die2(x, y) {
+	int i;
+	for (i=1;i<=6;i++) {
+		die3(x, y, i);
+	}
+}
+void die3(x, y, z) {
+	if (x + y + z == n)
+		printf("%d %d %d\n", x, y, z);
 
 }
