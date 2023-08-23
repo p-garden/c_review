@@ -1,14 +1,12 @@
 #include <stdio.h>
-int add(int);
+int fun1(int);
 int main() {
-	int x, y, n, i, sum=0;
+	int x;
 	scanf("%d", &x);
-	for (i = 1; i <= x; i++) {
-		sum += add(i);
-	}
-	printf("%d", sum);
+
+	printf("%d", fun1(x));
 }
-int add(x) {
-	int z = x * (x + 1) / 2;
+int fun1(x) {
+	int z = 2*x*x - 5*x+1;
 	return z;
 }
