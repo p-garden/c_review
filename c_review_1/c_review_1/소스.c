@@ -55,7 +55,7 @@ char encrypt(char ch, int m) {
 			return (ch + m);
 		else if ((ch + m) >'Z')
 			return (((ch + m) - 'A') % 26) + 'A';
-	}
+	} 
 	else 
 		return ch; 
 }
