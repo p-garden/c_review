@@ -1,42 +1,24 @@
 #include <stdio.h>
-int multiple(int, int);
-int maximum(int, int);
-int digit_maximum(int);
+int count(int, int);
 int main() {
-	int n,m,k,i,max=0;
-	scanf("%d%d%d", &n, &m, &k);
-	for (i = n; i <= m; i++) {
-		if (multiple(i,k) == 1) {
-			if (max < digit_maximum(i))
-				max = digit_maximum(i);
+	int n, m, k, i, cnt[10] = {0};
+	scanf("%d", &n);
+	while (n > 0) {
+		for (i = 0; i <= 9; i++) {
+			cnt[i] += count(n, i);
 		}
-		else {
-			if (max < (i%k))
-				max = i % k;
-		}
+		scanf("%d", &n);
 	}
-	printf("%d", max);
+	for (i = 0; i < 10; i++)
+		printf("%d ", cnt[i]);
 	return 0;
 }
-int multiple(int x, int y) {
-	if (x%y == 0)
-		return 1;
-	else
-		return 0;
-}
-int maximum(int x, int y) {
-	if (x > y)
-		return x;
-	else
-		return y;
-}
-int digit_maximum(int x) {
-	int i,cur,max;
-	max = x % 10;
-	while (x) {
-		cur = x % 10;
-		x /= 10;
-		max = maximum(max, cur);
+int count(int n, int m) {
+	int cnt = 0;
+	while (n) {
+		if (n % 10 == m)
+			cnt++;
+		n /= 10;
 	}
-	return max;
+	return cnt;
 }
