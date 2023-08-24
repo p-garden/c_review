@@ -1,61 +1,56 @@
 #include <stdio.h>
-char decrypt(char, int);
-char encrypt(char, int);
+int num_digit(int);
+int convert_top(int, int);
+int convert_bottom(int);
 int main() {
-	int n,m,len=0,i;
-	char ch,ch_li[101],tmp, en_li[101];
-	scanf("%c", &ch);
-	while (ch != '*') {
-		ch_li[len] = ch;
-		len++;
-		scanf("%c", &ch);
+	int n, i, n_cnt;
+	scanf("%d", &n);
+	n_cnt = num_digit(n);
+	if (n_cnt % 2 == 1) {
+		while (n) {
+			n = convert_top(n, n_cnt);
+			n_cnt -= 2;
+		}
 	}
-	scanf("%d%d", &n, &m);
-	for (i = 0; i < len; i++) {
-		tmp=decrypt(ch_li[i],n);
-		en_li[i] = tmp;
-		printf("%c", tmp);
-	}
-	printf("\n");
-	for (i = 0; i < len; i++) {
-		tmp = encrypt(en_li[i], m);
-		printf("%c",tmp);
+	else {
+		while (n)
+			n = convert_bottom(n);
 	}
 	return 0;
 }
-char decrypt(char ch, int m) {
-	char ch1;
-	if ('a' <= ch && ch <= 'z') {
-		ch1 = ch - 'a' - m;
-		if ('a' <= (ch1 + 'a') && (ch1 + 'a') <= 'z')
-			return ch1 + 'a';
-		else  if (ch1 < 0 && ('a' <= (ch1 + 'z' + 1) && (ch1 + 'z' + 1) <= 'z'))
-			return (ch1 + 'z' + 1);
+int num_digit(n) {
+	int dig = 0;
+	while (n) {
+		n /= 10;
+		dig++;
 	}
-	else if ('A' <= ch && ch <= 'Z') {
-		ch1 = ch - 'A' - m;
-		if ('A' <= (ch1 + 'A') && (ch1 + 'A') <= 'Z')
-			return ch1 + 'A';
-		else  if (ch1 < 0 && ('A' <= (ch1 + 'Z' + 1) && (ch1 + 'Z' + 1) <= 'Z'))
-			return (ch1 + 'Z' + 1);
-	}
-	else
-		return ch;
+	return dig;
 }
-char encrypt(char ch, int m) {
-	char ch1;
-	if ('a' <= ch && ch <= 'z') {
-		if ('a' <= (ch+m) && (ch + m) <= 'z')
-			return(ch + m);
-		else if ((ch + m) >'z')
-			return (((ch + m) - 'a') % 26) + 'a';
+int convert_top(n, dig) {
+	int n_10 = 1, i;
+	for (i = 1; i < dig; i++)
+		n_10 *= 10;
+	n_10 /= 10;
+	if (dig == 1)
+		printf("*");
+	else {
+		if (('a' <= (n / n_10) && (n / n_10) <= 'z') || ('A' <= (n / n_10) && (n / n_10) <= 'Z'))
+			printf("%c", n / n_10);
+		else
+			printf("*");
 	}
-	else if ('A' <= ch && ch <= 'Z') {
-		if ('A' <= (ch + m) && (ch + m) <= 'Z')
-			return (ch + m);
-		else if ((ch + m) >'Z')
-			return (((ch + m) - 'A') % 26) + 'A';
-	} 
-	else 
-		return ch; 
+	if (dig == 1)
+		return 0;
+	else
+		return n % n_10;
+}
+int convert_bottom(n) {
+	if (('a' <= (n % 100) && (n % 100) <= 'z') || ('A' <= (n % 100) && (n % 100) <= 'Z'))
+		printf("%c", (n % 100));
+	else
+		printf("*");
+
+
+	return (n / 100);
+
 }
