@@ -1,23 +1,25 @@
 #include <stdio.h>
-int add_to_k(int*, int*);
+void abc(int*, int);
 int main() {
-	int n, d[100],sum=0;
-	int *pd;
-	scanf("%d", &n);
-	for (pd = d; pd < d + n; pd++)
-		scanf("%d", pd);
-	for (pd = d; pd < d + n; pd++) {
-		sum += add_to_k(d,pd);
+	int a[10], i;
+	int *pa;
+	for (pa = a; pa < a + 10; pa++)
+		scanf("%d", pa);
+	for (pa = a,i=10; pa < a + 10; pa++,i--) {
+		abc(pa, i);
 	}
-	printf("%d", sum);
+	for (pa = a; pa < a + 10; pa++)
+		printf(" %d", *pa);
 	return 0;
 }
-int add_to_k(int *a, int*b) {
-	int *pa;
-	int sum = 0;
-	for (pa = a; pa <= b; pa++) {
-		sum += *pa;
+void abc(int*pa, int n) {
+	int max = 0,tmp;
+	int *pb,*pos;
+	for (pb = pa; pb < pa + n; pb++) {
+		if (*pb > *pa) {
+			tmp = *pa;
+			*pa = *pb;
+			*pb = tmp;
+		}
 	}
-	return sum;
-
 }
