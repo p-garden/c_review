@@ -1,18 +1,32 @@
 #include <stdio.h>
-int *mid(int[]);
+void gcdlcm(int,int,int *,int *);
 int main() {
-	int arr[3];
-	int *par;
-	for (par = arr; par < arr + 3; par++)
-		scanf("%d", par);
-	printf("%d", *(mid(arr)));	
+	int a, b,gcd,lcm;
+	int *pgcd, *plcm;
+	scanf("%d%d", &a, &b);
+	pgcd = &gcd, plcm = &lcm;
+	gcdlcm(a, b, pgcd, plcm);
+	printf("%d %d", *pgcd, *plcm);
 	return 0;
 }
-int *mid(int x[3]) {
-	if ((*x <= *(x + 1) && *(x + 1) <= *(x + 2)) || (*(x + 2) <= *(x + 1) && *(x + 1) <= *x))
-		return x + 1;
-	else if ((*(x + 1) <= *x && *x <= *(x + 2)) || *(x + 2) <= *x && *x <= *(x + 1))
-		return x;
-	else
-		return x + 2;
+void gcdlcm(int a, int b, int* pa, int*pb) {
+	int i,tmp,gcd,lcm;
+	if (a > b) {
+		tmp = a;
+		a = b;
+		b = tmp;
+	}
+
+	for (i = 1; i <= a; i++) {
+		if (a%i == 0 && b%i == 0)
+			gcd = i;
+	}
+	for (i = b;; i++) {
+		if (i%a == 0 && i%b == 0) {
+			lcm = i;
+			break;
+		}
+	}
+	*pa = gcd;
+	*pb = lcm;
 }
