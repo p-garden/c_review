@@ -1,19 +1,22 @@
 #include <stdio.h>
-void strcopy(char[], char[]);
+void addarray(int *, int *,int*, int);
 int main() {
-	char a[6], b[6];
-	char *pa, *pb;
-	for (pb = b; pb < b + 6; pb++)
-		scanf("%c", pb);
-	strcopy(a, b);
-	for (pa = a; pa < a + 6; pa++)
-		printf("%c", *pa);
+	int n, a[20], b[20], c[20];
+	int *pa, *pb, *pc;
+	scanf("%d", &n);
+	for (pa = a; pa < a + n; pa++)
+		scanf("%d", pa);
+	for (pb = b; pb < b + n; pb++)
+		scanf("%d", pb);
+	addarray(a, b, c,n);
+	for (pc = c; pc < c + n; pc++)
+		printf(" %d", *pc);
+
 	return 0;
 }
-void strcopy(char a[], char b[]) {
-	char *pa, *pb;
-	for (pa = a, pb = b; pa < a + 6; pa++, pb++) {
-		*pa = *pb;
-	}
-
+void addarray(int*pa, int*pb, int*pc,int n) {
+	int *a, *b, *c;
+	for (a = pa, b = (pb+n-1), c = pc; a < pa + n; a++, b--, c++) {
+		*c = *a + *b;
+	} 
 }
