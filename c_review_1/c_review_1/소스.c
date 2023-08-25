@@ -1,21 +1,18 @@
 #include <stdio.h>
-void swap(int*, int*);
+int *mid(int[]);
 int main() {
-	int n, i,arr[50],a,b;
+	int arr[3];
 	int *par;
-	
-	scanf("%d", &n);
-	for (par = arr; par < arr + n; par++)
+	for (par = arr; par < arr + 3; par++)
 		scanf("%d", par);
-	scanf("%d%d", &a, &b);
-	swap(arr + a, arr + b);
-	for (par = arr; par < arr + n; par++)
-		printf(" %d", *par);
+	printf("%d", *(mid(arr)));	
 	return 0;
 }
-void swap(int *a, int*b) {
-	int tmp;
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+int *mid(int x[3]) {
+	if ((*x <= *(x + 1) && *(x + 1) <= *(x + 2)) || (*(x + 2) <= *(x + 1) && *(x + 1) <= *x))
+		return x + 1;
+	else if ((*(x + 1) <= *x && *x <= *(x + 2)) || *(x + 2) <= *x && *x <= *(x + 1))
+		return x;
+	else
+		return x + 2;
 }
