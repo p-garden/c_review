@@ -1,18 +1,23 @@
 #include <stdio.h>
-int arrsum(int*, int*);
+int add_to_k(int*, int*);
 int main() {
-	int n, s, e, a[100],sum;
-	int *pa;
-	scanf("%d%d%d", &n, &s, &e);
-	for (pa = a; pa < a + n; pa++)
-		scanf("%d", pa);
-	printf("%d", arrsum(a + s, a + e));
+	int n, d[100],sum=0;
+	int *pd;
+	scanf("%d", &n);
+	for (pd = d; pd < d + n; pd++)
+		scanf("%d", pd);
+	for (pd = d; pd < d + n; pd++) {
+		sum += add_to_k(d,pd);
+	}
+	printf("%d", sum);
 	return 0;
 }
-int arrsum(int*pa, int*pb) {
+int add_to_k(int *a, int*b) {
+	int *pa;
 	int sum = 0;
-	int *pc;
-	for (pc = pa; pc <= pb; pc++) 
-		sum += *pc;
+	for (pa = a; pa <= b; pa++) {
+		sum += *pa;
+	}
 	return sum;
+
 }
