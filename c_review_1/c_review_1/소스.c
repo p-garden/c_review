@@ -1,15 +1,15 @@
 #include <stdio.h>
 int main() {
-	int x, y, z;
-	int *px, *py, *pz, *tmp;
-
-	scanf("%d%d%d", &x, &y, &z);
-	px=&x, py=&y, pz=&z;
-	tmp = pz;
-	pz = py;
-	py = px;
-	px = tmp;
-	printf("%d %d %d", *px, *py, *pz);
-
+	char ch[20],tmp;
+	char *pch = &ch;
+	int i=0,j;
+	scanf("%c", &tmp);
+	while (tmp != '#') {
+		*(pch+i) = tmp;
+		i++;
+		scanf("%c", &tmp);
+	}
+	for (j = i-1; j >= 0; j--)
+		printf("%c", *(pch+j));
 	return 0;
 }
