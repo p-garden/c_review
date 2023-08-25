@@ -1,22 +1,21 @@
 #include <stdio.h>
+void swap(int*, int*);
 int main() {
-	char a[10],max_ch;
-	char *pa,*pa2;
-	int max = 0, cnt;
-	for (pa = a; pa < a + 10; pa++) 
-		scanf("%c", pa);
-	for (pa = a; pa < a + 10; pa++) {
-		cnt = 0;
-		for (pa2 = a; pa2 < a + 10; pa2++) {
-			if (*pa == *pa2) 
-				cnt++;	
-		}
-		if (max < cnt) {
-			max = cnt;
-			max_ch = *pa;
-		}
-	}
-	printf("%c %d", max_ch, max);
-
+	int n, i,arr[50],a,b;
+	int *par;
+	
+	scanf("%d", &n);
+	for (par = arr; par < arr + n; par++)
+		scanf("%d", par);
+	scanf("%d%d", &a, &b);
+	swap(arr + a, arr + b);
+	for (par = arr; par < arr + n; par++)
+		printf(" %d", *par);
 	return 0;
+}
+void swap(int *a, int*b) {
+	int tmp;
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
