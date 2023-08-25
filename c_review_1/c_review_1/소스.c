@@ -1,22 +1,18 @@
 #include <stdio.h>
-void addarray(int *, int *,int*, int);
+int arrsum(int*, int*);
 int main() {
-	int n, a[20], b[20], c[20];
-	int *pa, *pb, *pc;
-	scanf("%d", &n);
+	int n, s, e, a[100],sum;
+	int *pa;
+	scanf("%d%d%d", &n, &s, &e);
 	for (pa = a; pa < a + n; pa++)
 		scanf("%d", pa);
-	for (pb = b; pb < b + n; pb++)
-		scanf("%d", pb);
-	addarray(a, b, c,n);
-	for (pc = c; pc < c + n; pc++)
-		printf(" %d", *pc);
-
+	printf("%d", arrsum(a + s, a + e));
 	return 0;
 }
-void addarray(int*pa, int*pb, int*pc,int n) {
-	int *a, *b, *c;
-	for (a = pa, b = (pb+n-1), c = pc; a < pa + n; a++, b--, c++) {
-		*c = *a + *b;
-	} 
+int arrsum(int*pa, int*pb) {
+	int sum = 0;
+	int *pc;
+	for (pc = pa; pc <= pb; pc++) 
+		sum += *pc;
+	return sum;
 }
