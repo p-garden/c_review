@@ -1,18 +1,22 @@
 #include <stdio.h>
 int main() {
-	int arr[5], rank[5] = {1,1,1,1,1};
-	int *par,*par2,*pr;
-	for (par = arr;par < arr + 5; par++) {
-		scanf("%d", par);
-	}
-	for (par = arr,pr=rank; par < arr+5; par++,pr++) {
-		for (par2 = arr; par2 < arr + 5; par2++) {
-			if (*par < *par2)
-				*pr += 1;
+	char a[10],max_ch;
+	char *pa,*pa2;
+	int max = 0, cnt;
+	for (pa = a; pa < a + 10; pa++) 
+		scanf("%c", pa);
+	for (pa = a; pa < a + 10; pa++) {
+		cnt = 0;
+		for (pa2 = a; pa2 < a + 10; pa2++) {
+			if (*pa == *pa2) 
+				cnt++;	
+		}
+		if (max < cnt) {
+			max = cnt;
+			max_ch = *pa;
 		}
 	}
-	for (par = arr,pr=rank; par < arr + 5; par++,pr++) {
-		printf("%d=r%d ", *par, *pr);
-	}
+	printf("%c %d", max_ch, max);
+
 	return 0;
 }
