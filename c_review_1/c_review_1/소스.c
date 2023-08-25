@@ -1,21 +1,18 @@
 #include <stdio.h>
 int main() {
-	int x[3], n,i,cnt=0,*tmp;
-	int *px,*py;
-
-	for (px = x; px < x + 3; px++)
-		scanf("%d", px);
-	
-	for (px = x+2; px >=x; px--) {
-		for (py = x; py < px; py++) {
-			if (*py < *(py + 1)) {
-				tmp = *py;
-				*py = *(py + 1);
-				*(py + 1) = tmp;
-			}
+	int arr[5], rank[5] = {1,1,1,1,1};
+	int *par,*par2,*pr;
+	for (par = arr;par < arr + 5; par++) {
+		scanf("%d", par);
+	}
+	for (par = arr,pr=rank; par < arr+5; par++,pr++) {
+		for (par2 = arr; par2 < arr + 5; par2++) {
+			if (*par < *par2)
+				*pr += 1;
 		}
 	}
-	px = &x;
-	printf("%d", *(px + 1));
+	for (par = arr,pr=rank; par < arr + 5; par++,pr++) {
+		printf("%d=r%d ", *par, *pr);
+	}
 	return 0;
 }
