@@ -1,15 +1,15 @@
 #include <stdio.h>
 int main() {
-	char ch[20],tmp;
-	char *pch = &ch;
-	int i=0,j;
-	scanf("%c", &tmp);
-	while (tmp != '#') {
-		*(pch+i) = tmp;
-		i++;
-		scanf("%c", &tmp);
+	int ar[50] = { 0 }, n,i,cnt=0;
+	int *p;
+
+	scanf("%d", &n);
+	for (p = ar; p < ar + n;p++) {
+		scanf("%d", p);
+		if (*p == 0)
+			break;
+		cnt++;
 	}
-	for (j = i-1; j >= 0; j--)
-		printf("%c", *(pch+j));
+	printf("%d", cnt);
 	return 0;
 }
