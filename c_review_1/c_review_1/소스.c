@@ -1,32 +1,19 @@
 #include <stdio.h>
-void gcdlcm(int,int,int *,int *);
+void strcopy(char[], char[]);
 int main() {
-	int a, b,gcd,lcm;
-	int *pgcd, *plcm;
-	scanf("%d%d", &a, &b);
-	pgcd = &gcd, plcm = &lcm;
-	gcdlcm(a, b, pgcd, plcm);
-	printf("%d %d", *pgcd, *plcm);
+	char a[6], b[6];
+	char *pa, *pb;
+	for (pb = b; pb < b + 6; pb++)
+		scanf("%c", pb);
+	strcopy(a, b);
+	for (pa = a; pa < a + 6; pa++)
+		printf("%c", *pa);
 	return 0;
 }
-void gcdlcm(int a, int b, int* pa, int*pb) {
-	int i,tmp,gcd,lcm;
-	if (a > b) {
-		tmp = a;
-		a = b;
-		b = tmp;
+void strcopy(char a[], char b[]) {
+	char *pa, *pb;
+	for (pa = a, pb = b; pa < a + 6; pa++, pb++) {
+		*pa = *pb;
 	}
 
-	for (i = 1; i <= a; i++) {
-		if (a%i == 0 && b%i == 0)
-			gcd = i;
-	}
-	for (i = b;; i++) {
-		if (i%a == 0 && i%b == 0) {
-			lcm = i;
-			break;
-		}
-	}
-	*pa = gcd;
-	*pb = lcm;
 }
