@@ -1,58 +1,44 @@
 #include <stdio.h>
-int *max(int[]);
-int *min(int[]);
+int correct(int *);
+int upper(int *);
 int main() {
-	int n,i,ar[100],tmp,cnt;
-	int *par,*pmax,*pmin;
-	scanf("%d", &n);
-	for (i = 0; i < n; i++) {
-		for (par = ar;; par++) {
-			scanf("%d", par);
-			if (*par == 0)
-				break;
-		}
-		pmax = max(ar), pmin = min(ar);
-		cnt = 0;
-		if (pmax < pmin) {
-			for (par = pmax + 1; par < pmin; par++) {
-				printf("%d ", *par);
-				cnt++;
-			}
-		}
-		else {
-			for (par = pmin + 1; par < pmax; par++) {
-				printf("%d ", *par);
-				cnt++;
-			}
-		}
-		if (cnt == 0)
-			printf("none");
-		printf("\n");
-	}
+	int lot[6],flg;
+	int *plot;
+	for (plot = lot; plot < lot + 6; plot++) 
+		scanf("%d", plot);
+	flg=correct(lot);
+	printf("%d\n", flg);
+	for (plot = lot; plot < lot + 6; plot++)
+		printf("%d ", *plot);
 	return 0;
 }
-int *max(int a[]) {
-	int max = *a, *pa, *max_pos = a;
-	for (pa = a;; pa++) {
-		if (*pa == 0)
-			break;
-		if (max < *pa) {
-			max = *pa;
-			max_pos = pa;
+int correct(int *arr) {
+	int *par, *qar,cnt,flg=0;
+	for (par = arr; par < arr + 6; par++) {
+		cnt = 0;
+		for (qar = arr; qar < arr + 6; qar++) {
+			if (*par == *qar)
+				cnt++;
+			if (cnt > 1) {
+				*par = upper(arr);
+				flg = 1;
+				break;
+			}
 		}
 	}
-	return max_pos;
-	
+	if (flg == 1)
+		return 1;
+	else
+		return 0;
 }
-int *min(int a[]) {
-	int min = *a, *pa, *min_pos = a;
-	for (pa = a;; pa++) {
-		if (*pa == 0)
-			break;
-		if (min > *pa) {
-			min = *pa;
-			min_pos = pa;
+int upper(int *arr) {
+	int *par, *qar;
+	int  ret = 1;
+	for (par = arr; par < arr + 6; par++) {
+		for (qar = arr; qar < arr + 6; qar++) {
+			if (ret == *qar) 
+				ret++;
 		}
 	}
-	return min_pos;
+	return ret;
 }
