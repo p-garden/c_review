@@ -1,26 +1,78 @@
 #include <stdio.h>
+void abc(int[],int);
+void cba(int[],int);
 int main() {
-	int n,sum=0,cur=0;
-	char chr[100],prt_chr[100];
-	char *pchr;
-	scanf("%d", &n);
-	getchar();
-	for (pchr = chr; pchr < chr + n; pchr++)
-		scanf("%c", pchr);
-	for (pchr = chr; pchr < chr + n; pchr++) {
-		if ('0' <= *pchr&&*pchr <= '9') {
-			cur += *pchr - '0';
-			if ('0' <= *(pchr + 1) && *(pchr + 1) <= '9')
-				cur *= 10;
-			else {
-				sum += cur;
-				cur = 0;
-			}
+	int n = 0, m = 0, a[10] = { 0 }, b[10] = {0}, tmp, i;
+	int *pa, *pb;
+	for (pa = a;; pa++) {
+		scanf("%d", &tmp);
+		if (tmp == 0)
+			break;
+		*pa = tmp;
+		n++;
+	}
+	for (pb = b;; pb++) {
+		scanf("%d", &tmp);
+		if (tmp == 0)
+			break;
+		*pb = tmp;
+		m++;
+	}
+	abc(a, n);
+	abc(b, m);
+	i = 0;
+	for (pa = a, pb = b; i < n;) {
+		if (*pa < *pb ) {
+			printf("%d ", *pb);
+			pb++;
 		}
 		else {
-			printf("%c", *pchr);
+			printf("%d ", *pa);
+			pa++;
+		}
+		i++;
+	}
+	printf("\n");
+	cba(a, n);
+	cba(b, m);
+	i = 0;
+	for (pa = a, pb = b; i < m;) {
+		if (*pa > *pb) {
+			printf("%d ", *pb);
+			pb++;
+		}
+		else {
+			printf("%d ", *pa);
+			pa++;
+		}
+		i++;
+	}
+	
+	return 0;
+}
+void abc(int a[],int n) {
+	int *pa,*qa;
+	int tmp;
+	for (pa = a+n-1; pa >=a; pa--) {
+		for (qa = a; qa < pa; qa++) {
+			if (*qa < *(qa + 1)) {
+				tmp = *qa;
+				*qa = *(qa + 1);
+				*(qa + 1) = tmp;
+			}
 		}
 	}
-	printf("\n%d", sum);
-	return 0;
+}
+void cba(int a[], int n) {
+	int *pa, *qa;
+	int tmp;
+	for (pa = a + n - 1; pa >= a; pa--) {
+		for (qa = a; qa < pa; qa++) {
+			if (*qa > *(qa + 1)) {
+				tmp = *qa;
+				*qa = *(qa + 1);
+				*(qa + 1) = tmp;
+			}
+		}
+	}
 }
