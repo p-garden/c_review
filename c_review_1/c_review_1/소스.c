@@ -1,17 +1,22 @@
 #include <stdio.h>
 #include <string.h>
 int main() {
-	int n,i,len,min=100;
-	char a[101],b[101];
-	scanf("%d", &n);
-	getchar();
-	for (i = 0; i < n; i++) {
-		gets(a);
-		len = strlen(a);
-		if (min > len) {
-			min = len;
-			strcpy(b, a);
+	int n, i,cnt,flg=0;
+	char a[80], b[10], *pa,*pb;
+	scanf("%s", a);
+	scanf("%s", b);
+	for (pa = a; pa < a + strlen(a); pa++) {
+		cnt = 0;
+		if (*pa == b[0]) {
+			for (pb = b, i = 0; pb < b + strlen(b); pb++, i++) {
+				if (*(pa + i) == *pb)
+					cnt++;
+				if (cnt == strlen(b)) {
+					flg = 1;
+					break;
+				}
+			}
 		}
 	}
-	printf("%s",b);
+	printf("%d %d",strlen(a),flg);
 }
