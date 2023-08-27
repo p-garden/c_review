@@ -2,8 +2,8 @@
 #include <string.h>
 int main() {
 	int n, i,cnt,flg=0;
-	char a[80], b[10], *pa,*pb;
-	scanf("%s", a);
+	char a[100], b[100], *pa,*pb;
+	gets(a);
 	scanf("%s", b);
 	for (pa = a; pa < a + strlen(a); pa++) {
 		cnt = 0;
@@ -12,11 +12,12 @@ int main() {
 				if (*(pa + i) == *pb)
 					cnt++;
 				if (cnt == strlen(b)) {
-					flg = 1;
+					flg += 1;
+					pa += cnt-1;
 					break;
 				}
 			}
 		}
 	}
-	printf("%d %d",strlen(a),flg);
+	printf("%d",flg);
 }
