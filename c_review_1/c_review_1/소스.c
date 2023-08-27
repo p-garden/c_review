@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <string.h>
-int check(char*);
 int main() {
-	char a[30];
-	scanf("%s", a);
-	printf("%d %d", strlen(a), check(a));
-}
-int check(char *a) {
-	int len,i,j,flg=1;
-	len = strlen(a);
-	for (i = 0, j = len - 1; i < len; i++, j--) {
-		if (a[i] != a[j])
-			flg = 0;
+	int n,i,len,min=100;
+	char a[101],b[101];
+	scanf("%d", &n);
+	getchar();
+	for (i = 0; i < n; i++) {
+		gets(a);
+		len = strlen(a);
+		if (min > len) {
+			min = len;
+			strcpy(b, a);
+		}
 	}
-	return flg;
+	printf("%s",b);
 }
