@@ -1,31 +1,32 @@
 #include <stdio.h>
 #include <string.h>
+int in_cnt(char*, char*);
 int main() {
-	int n, i, j,b_len=0;
-	char a[100], b[10][100],*pa,tmp[100];
+	int cnt;
+	char a[101], b[101];
 	gets(a);
-	for (pa = a,j=0; pa < a + 100; pa++,j++) {
-		if (*pa == '\0') {
-			tmp[j] = '\0';
-			strcpy(b[b_len], tmp);
-			b_len++;
-			break;
+	scanf("%s", b);
+	cnt = in_cnt(a, b);
+	printf("%d", cnt);
+	
+}
+int in_cnt(char *a, char*b) {
+	int len_a,len_b,i,cnt=0,tmp_cnt;
+	char *pa, *pb;
+	len_a = strlen(a);
+	len_b = strlen(b);
+	for (pa = a; pa < a + len_a; pa++) {
+		if ((*(pa-1) == ' ' || *(pa-1) == '.' || pa == a)&& (*pa==b[0]) && (*(pa+len_b)==' ' || *(pa+len_b)=='.'||*(pa+len_b)=='\0')) {
+			tmp_cnt = 0;
+			for (pb = b,i=0; pb < b + len_b;i++, pb++) {
+				if (*pb == *(pa + i))
+					tmp_cnt++;
+			}
+			if (tmp_cnt == len_b) {
+				cnt++;
+				pa += len_b;
+			}
 		}
-		if (*pa == ' ') {
-			tmp[j] = '\0';
-			strcpy(b[b_len],tmp);
-			j = -1;
-			b_len++;
-			continue;
-		}
-		tmp[j] = *pa;
 	}
-	for (i = 0; i < b_len; i++)
-		printf("%s\n", b[i]);
-	strcpy(tmp, b[0]);
-	for (i = 0; i < b_len; i++) {
-		if (strcmp(tmp, b[i]) > 0)
-			strcpy(tmp, b[i]);
-	}
-	printf("%s", tmp);
+	return cnt;
 }
