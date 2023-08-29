@@ -1,30 +1,25 @@
 #include <stdio.h>
-typedef struct date {
-	int y, m, d;
-}date;
-date *select_min(date*, date*);
+typedef struct test {
+	int sco;
+	char name[10];
+}test;
+test *select_min(test*);
 int main() {
-	date a,b,c, *pc=&c;
-	scanf("%d/%d/%d", &a.y, &a.m, &a.d);
-	scanf("%d/%d/%d", &b.y, &b.m, &b.d);
-	pc = select_min(&a, &b);
-	printf("%d/%d/%d", pc->y, pc->m, pc->d);
+	test a[5], *pa;
+	for (pa = a; pa < a + 5; pa++)
+		scanf("%s %d", &pa->name, &pa->sco);
+	pa = select_min(a);
+	printf("%s %d", pa->name, pa->sco);
+
 }
-date *select_min(date *a, date *b) {
-	if (a->y > b->y)
-		return b;
-	else if (a->y < b->y)
-		return a;
-	else {
-		if (a->m > b->m)
-			return b;
-		else if (a->m < b->m)
-			return a;
-		else {
-			if (a->d > b->d)
-				return b;
-			else 
-				return a;
+test *select_min(test *a) {
+	test *pa, *pb;
+	int min=101;
+	for (pa = a; pa < a + 5; pa++) {
+		if (min > pa->sco) {
+			min = pa->sco;
+			pb = pa;
 		}
 	}
+	return pb;
 }
