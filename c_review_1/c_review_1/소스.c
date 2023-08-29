@@ -1,19 +1,30 @@
 #include <stdio.h>
-typedef struct test {
-	int high, low,pass_diff,diff;
-	char pf;
-}test;
-void passorfail(test*);
+typedef struct date {
+	int y, m, d;
+}date;
+date *select_min(date*, date*);
 int main() {
-	test a,*pa=&a;
-	scanf("%d%d%d", &a.high, &a.low, &a.pass_diff);
-	a.diff = a.high - a.low;
-	passorfail(pa);
-	printf("%d %c", a.diff, a.pf);
+	date a,b,c, *pc=&c;
+	scanf("%d/%d/%d", &a.y, &a.m, &a.d);
+	scanf("%d/%d/%d", &b.y, &b.m, &b.d);
+	pc = select_min(&a, &b);
+	printf("%d/%d/%d", pc->y, pc->m, pc->d);
 }
-void passorfail(test *a) {
-	if (a->diff <= a->pass_diff)
-		a->pf = 'P';
-	else
-		a->pf = 'F';
+date *select_min(date *a, date *b) {
+	if (a->y > b->y)
+		return b;
+	else if (a->y < b->y)
+		return a;
+	else {
+		if (a->m > b->m)
+			return b;
+		else if (a->m < b->m)
+			return a;
+		else {
+			if (a->d > b->d)
+				return b;
+			else 
+				return a;
+		}
+	}
 }
