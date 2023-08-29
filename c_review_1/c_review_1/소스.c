@@ -1,12 +1,33 @@
 #include <stdio.h>
 #include <string.h>
-typedef struct vector {
-	int a, b, c;
+typedef struct time {
+	int h,m,s;
 }vector;
 int main() {
-	vector v1, v2;
-	scanf("%d%d%d", &v1.a, &v1.b, &v1.c);
-	scanf("%d%d%d", &v2.a, &v2.b, &v2.c);
-	printf("%d %d %d\n", v1.a*v2.a, v1.b*v2.b, v1.c*v2.c);
-	printf("%d", (v1.a*v2.a + v1.b*v2.b + v1.c*v2.c));
+	vector t1, t2,t3;
+	int flg = 0;
+	scanf("%d%d%d", &t1.h, &t1.m, &t1.s);
+	scanf("%d%d%d", &t2.h, &t2.m, &t2.s);
+	if (t2.s >= t1.s) 
+		t3.s = t2.s - t1.s;
+	else {
+		flg = -1;
+		t3.s = t2.s + 60 - t1.s;
+	}
+
+	if (t2.m > t1.m) {
+		t3.m = t2.m - t1.m + flg;
+		flg = 0;
+	}
+	else {
+		t3.m = t2.m - t1.m + 60 + flg;
+		flg = -1;
+	}
+
+	if (t2.h > t1.h) 
+		t3.h = t2.h - t1.h + flg;
+	else {
+		t3.h = t2.h - t1.h + 60 + flg;
+	}
+	printf("%d %d %d", t3.h, t3.m, t3.s);
 }
