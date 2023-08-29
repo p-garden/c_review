@@ -1,47 +1,45 @@
 #include <stdio.h>
-typedef struct test {
-	int sco1,sco2,sco3;
-	char name[10];
-	double avg;
-}test;
-void read_data(test*);
-void cal_avg(test*);
-void sort(test*);
-void print_score(test*);
+#include <string.h>
+typedef struct student {
+	char name[10], code[11], grd;
+}student;
+int same(student*, student*);
 int main() {
-	test a[10], *pa;
-	read_data(a);
-	cal_avg(a);
-	sort(a);
-	print_score(a);
-
-}
-void read_data(test *a) {
-	test *pa;
-	for (pa = a; pa < a + 10; pa++)
-		scanf("%s%d%d%d", &pa->name, &pa->sco1, &pa->sco2, &pa->sco3);
-}
-void cal_avg(test *a) {
-	test *pa;
-	for (pa = a; pa < a + 10; pa++) 
-		pa->avg = (pa->sco1 + pa->sco2 + pa->sco3) / 3.0;
-}
-void sort(test *a) {
-	test *pa, *pb, tmp;
-	for (pa = a+9; pa > a ; pa--) {
-		for (pb = a; pb < pa; pb++) {
-			if (pb->avg < (pb + 1)->avg) {
-				tmp = *pb;
-				*pb = *(pb + 1);
-				*(pb + 1)= tmp;
-			}
+	student st[5],*pst,*qst;
+	char name[10];
+	int flg = 0;
+	for (pst = st; pst < st + 5; pst++) {
+		scanf("%s", pst->name);
+		scanf("%s", pst->code);
+		getchar();
+		scanf("%c", &pst->grd);
+	}
+	scanf("%s", name);
+	for (pst = st; pst < st + 5; pst++) {
+		if (strcmp(name, pst->name) == 0) {
+			qst = pst;
+			break;
 		}
 	}
+	for (pst = st; pst < st + 5; pst++) {
+		if ((pst->grd == qst->grd) && (pst != qst) && (same(pst, qst)) == 1) {
+			printf(" %s\n", pst->name);
+			flg = 1;
+		}
+	}
+	if (flg == 0)
+		printf("0");
+	return 0;
 }
-void print_score(test *a) {
-	int i;
-	printf("%s %.2lf\n", a->name, a->avg);
-	printf("%s %.2lf\n", (a + 9)->name, (a + 9)->avg);
-	for (i = 7; i < 10; i++)
-		printf("%s %.2lf\n", (a+i)->name, (a+i)->avg);
+int same(student* a, student* b) {
+	int flg = 1;
+	if (a->code[0] != b->code[0])
+		flg = 0;
+	if (a->code[1] != b->code[1])
+		flg = 0;
+	if (a->code[2] != b->code[2])
+		flg = 0;
+	if (a->code[3] != b->code[3])
+		flg = 0;
+	return flg;
 }
