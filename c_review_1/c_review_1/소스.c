@@ -1,45 +1,42 @@
 #include <stdio.h>
 #include <string.h>
-typedef struct student {
-	char name[10], code[11], grd;
-}student;
-int same(student*, student*);
+typedef struct person {
+	int id, arv, srv, wait;
+}person;
+void waitingtime(person[], int);
+double avgtime(person[], int);
 int main() {
-	student st[5],*pst,*qst;
-	char name[10];
-	int flg = 0;
-	for (pst = st; pst < st + 5; pst++) {
-		scanf("%s", pst->name);
-		scanf("%s", pst->code);
-		getchar();
-		scanf("%c", &pst->grd);
-	}
-	scanf("%s", name);
-	for (pst = st; pst < st + 5; pst++) {
-		if (strcmp(name, pst->name) == 0) {
-			qst = pst;
-			break;
-		}
-	}
-	for (pst = st; pst < st + 5; pst++) {
-		if ((pst->grd == qst->grd) && (pst != qst) && (same(pst, qst)) == 1) {
-			printf(" %s\n", pst->name);
-			flg = 1;
-		}
-	}
-	if (flg == 0)
-		printf("0");
-	return 0;
+	person pr[100];
+	int i,n;
+	double avg;
+	scanf("%d", &n);
+	for (i = 0; i < n; i++) 
+		scanf("%d%d%d", &pr[i].id, &pr[i].arv, &pr[i].srv);
+	waitingtime(pr, n);
+	avg = avgtime(pr, n);
+	printf("%.2lf", avg);
 }
-int same(student* a, student* b) {
-	int flg = 1;
-	if (a->code[0] != b->code[0])
-		flg = 0;
-	if (a->code[1] != b->code[1])
-		flg = 0;
-	if (a->code[2] != b->code[2])
-		flg = 0;
-	if (a->code[3] != b->code[3])
-		flg = 0;
-	return flg;
+void waitingtime(person a[], int n) {
+	int i,tmp=0;
+	a[0].wait = 0;
+	tmp += a[0].srv;
+	for (i = 1; i < n; i++) {
+		if (tmp <= a[i].arv) {
+			a[i].wait = 0;
+			tmp = a[i].srv + a[i].arv;
+		}
+		else {
+			a[i].wait = tmp - a[i].arv;
+			tmp += a[i].srv;
+		}
+	}
+}
+double avgtime(person a[], int n) {
+	int sum = 0, i;
+	double avg;
+	for (i = 0; i < n; i++) {
+		sum += a[i].wait;
+	}
+	avg = (double)sum / n;
+	return avg;
 }
