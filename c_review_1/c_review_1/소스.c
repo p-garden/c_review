@@ -1,71 +1,30 @@
 #include <stdio.h>
-typedef struct body {
-	int gen, wgh, hgh;
-}body;
-int grd(body);
+typedef struct arg {
+	int sco,rank;
+}arg;
+int rank(arg[], int);
 int main() {
-	body a,*pa;
-	int n, i = 0, cnt[3] = {0},tmp;
-	scanf("%d", &n);
-	for (i = 0; i < n; i++) {
-		scanf("%d%d%d", &a.gen, &a.wgh, &a.hgh);
-		tmp = grd(a);
-		cnt[tmp - 1] ++;
+	arg a[10],*pa;
+	int i;
+	for (pa = a; pa < a + 10;pa++) 
+		scanf("%d", &pa->sco);
+	for (i = 0; i < 10; i++) {
+		a[i].rank = rank(a, i);
 	}
-	for (i = 0; i < 3; i++)
-		printf("%d ", cnt[i]);
+	for (pa = a; pa < a + 10; pa++) {
+		if (pa->rank == 3)
+			printf("%d ", pa->sco);
+	}
+	for (pa = a; pa < a + 10; pa++) {
+		if (pa->rank == 7)
+			printf("%d", pa->sco);
+	}
 }
-int grd (body a) {
-	if (a.gen == 1) {
-		if (a.wgh < 60) {
-			if (a.hgh < 165)
-				return 1;
-			else if (a.hgh < 175)
-				return 2;
-			else
-				return 3;
-		}
-		else if (a.wgh < 70) {
-			if (a.hgh < 165)
-				return 3;
-			else if (a.hgh < 175)
-				return 1;
-			else
-				return 2;
-		}
-		else {
-			if (a.hgh < 165)
-				return 2;
-			else if (a.hgh < 175)
-				return 3;
-			else
-				return 1;
-		}
+int rank(arg a[], int n) {
+	int i, cnt = 1;
+	for (i = 0; i < 10; i++) {
+		if ((a+n)->sco < (a+i)->sco)
+			cnt++;
 	}
-	else {
-		if (a.wgh < 50) {
-			if (a.hgh < 165)
-				return 1;
-			else if (a.hgh < 175)
-				return 2;
-			else
-				return 3;
-		}
-		else if (a.wgh < 60) {
-			if (a.hgh < 165)
-				return 3;
-			else if (a.hgh < 175)
-				return 1;
-			else
-				return 2;
-		}
-		else {
-			if (a.hgh < 165)
-				return 2;
-			else if (a.hgh < 175)
-				return 3;
-			else
-				return 1;
-		}
-	}
+	return cnt;
 }
