@@ -1,30 +1,19 @@
 #include <stdio.h>
-typedef struct arg {
-	int sco,rank;
-}arg;
-int rank(arg[], int);
+typedef struct test {
+	int high, low,pass_diff,diff;
+	char pf;
+}test;
+void passorfail(test*);
 int main() {
-	arg a[10],*pa;
-	int i;
-	for (pa = a; pa < a + 10;pa++) 
-		scanf("%d", &pa->sco);
-	for (i = 0; i < 10; i++) {
-		a[i].rank = rank(a, i);
-	}
-	for (pa = a; pa < a + 10; pa++) {
-		if (pa->rank == 3)
-			printf("%d ", pa->sco);
-	}
-	for (pa = a; pa < a + 10; pa++) {
-		if (pa->rank == 7)
-			printf("%d", pa->sco);
-	}
+	test a,*pa=&a;
+	scanf("%d%d%d", &a.high, &a.low, &a.pass_diff);
+	a.diff = a.high - a.low;
+	passorfail(pa);
+	printf("%d %c", a.diff, a.pf);
 }
-int rank(arg a[], int n) {
-	int i, cnt = 1;
-	for (i = 0; i < 10; i++) {
-		if ((a+n)->sco < (a+i)->sco)
-			cnt++;
-	}
-	return cnt;
+void passorfail(test *a) {
+	if (a->diff <= a->pass_diff)
+		a->pf = 'P';
+	else
+		a->pf = 'F';
 }
