@@ -1,33 +1,34 @@
 #include <stdio.h>
 #include <string.h>
-typedef struct time {
-	int h,m,s;
-}vector;
+typedef struct student {
+	char name[8];
+	int kor, eng, math;
+	double avg;
+	char grd;
+}student;
 int main() {
-	vector t1, t2,t3;
-	int flg = 0;
-	scanf("%d%d%d", &t1.h, &t1.m, &t1.s);
-	scanf("%d%d%d", &t2.h, &t2.m, &t2.s);
-	if (t2.s >= t1.s) 
-		t3.s = t2.s - t1.s;
-	else {
-		flg = -1;
-		t3.s = t2.s + 60 - t1.s;
-	}
+	student st[50], *p = st,*q;
+	int n;
+	double avg;
+	scanf("%d", &n);
 
-	if (t2.m > t1.m) {
-		t3.m = t2.m - t1.m + flg;
-		flg = 0;
+	for (q = p; q < p + n; q++) {
+		scanf("%s", &q->name);
+		scanf("%d%d%d", &q->kor, &q->eng, &q->math);
 	}
-	else {
-		t3.m = t2.m - t1.m + 60 + flg;
-		flg = -1;
-	}
-
-	if (t2.h > t1.h) 
-		t3.h = t2.h - t1.h + flg;
-	else {
-		t3.h = t2.h - t1.h + 60 + flg;
-	}
-	printf("%d %d %d", t3.h, t3.m, t3.s);
+	
+	for (q = p; q < p + n; q++) {
+		printf("%s", q->name);
+		avg = (q->kor + q->eng + q->math) / 3.0;
+		printf(" %.1lf", avg);
+		if (avg >= 90 )
+			printf(" A");
+		else if (avg >= 80)
+			printf(" B");
+		else if (avg >= 70)
+			printf(" C");
+		else
+			printf(" D");
+		printf("\n");
+	}	
 }
