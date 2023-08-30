@@ -2,18 +2,23 @@
 #include <string.h>
 #include <stdlib.h>
 int main() {
-	int n, i,cnt=0;
-	char *a;
+	int n, i, min=101;
+	char **a, tmp[100],ch_min[100];
 	scanf("%d", &n);
-	a = (char*)malloc((n+1) * sizeof(char));
-	scanf("%s", a);
-	for (i = 0; i < n-2; i++) {
-		if (a[i] == 'c' && a[i + 1] == 'a' && a[i + 2] == 't') {
-			cnt++;
-			i += 2;
+	getchar();
+	a = (char**)malloc(n * sizeof(char*));
+	for (i = 0; i < n; i++) {
+		gets(tmp);
+		a[i] = (char*)malloc((strlen(tmp) + 1) * sizeof(char));
+		strcpy(a[i], tmp);
+		if (min > strlen(a[i])) {
+			min = strlen(a[i]);
+			strcpy(ch_min, a[i]);
 		}
 	}
-	printf("%d", cnt);
+	printf("%s", ch_min);
+	for (i = 0; i < n; i++)
+		free(a[i]);
 	free(a);
 	return 0;
 }
