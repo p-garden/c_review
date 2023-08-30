@@ -2,22 +2,18 @@
 #include <string.h>
 #include <stdlib.h>
 int main() {
-	int n, i,*a,tmp;
+	int n, i,cnt=0;
+	char *a;
 	scanf("%d", &n);
-	a = (int*)malloc(n * sizeof(int));
-	for (i = 0; i < n; i++)
-		scanf("%d", &a[i]);
-
-	for (i = 0; i < n-1; i++) {
-		if (a[i] > a[i + 1]) {
-			tmp = a[i];
-			a[i] = a[i + 1];
-			a[i + 1] = tmp;
+	a = (char*)malloc((n+1) * sizeof(char));
+	scanf("%s", a);
+	for (i = 0; i < n-2; i++) {
+		if (a[i] == 'c' && a[i + 1] == 'a' && a[i + 2] == 't') {
+			cnt++;
+			i += 2;
 		}
 	}
-	for (i = 0; i < n; i++) {
-		printf("%d\n", a[i]);
-	}
+	printf("%d", cnt);
 	free(a);
 	return 0;
 }
