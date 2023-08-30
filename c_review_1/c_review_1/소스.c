@@ -2,31 +2,25 @@
 #include <string.h>
 #include <stdlib.h>
 int main() {
-	int n, i,j;
-	char **a=NULL, tmp[100];
-	scanf("%d", &n);
-	getchar();
-
-	a = (char**)malloc(n * sizeof(char*));
-	for (i = 0; i < n; i++) {
-		gets(tmp);
-		a[i] = (char*)malloc((strlen(tmp) + 1) * sizeof(char));
-		strcpy(a[i], tmp);
-	}
-	for (i = n-1; i >0 ; i--) {
-		for (j = 0; j < i; j++) {
-			if(strlen(a[j]) < strlen(a[j + 1])) {
-				strcpy(tmp, a[j]);
-				strcpy(a[j], a[j + 1]);
-				strcpy(a[j + 1], tmp);
-			}
+	int i,j, *a,add=5,cnt=0,tmp[20];
+	a = (int*)malloc(add * sizeof(int));
+	while (1) {
+		scanf("%d", &a[cnt]);
+		if (a[cnt] == -1)
+			break;
+		cnt++;
+		if (cnt == add) {
+			add += 3;
+			for (j = 0; j < cnt; j++) 
+				tmp[j] = a[j];
+			free(a);
+			a = (int*)malloc(add * sizeof(int));
+			for (j = 0; j < cnt; j++) 
+				a[j] = tmp[j];
 		}
 	}
-	for (i = 0; i < n; i++)
-		printf("%s\n", a[i]);
-
-	for (i = 0; i < n; i++)
-		free(a[i]);
+	for (i = 0; i < cnt+1; i++)
+		printf(" %d", a[i]);
 	free(a);
 	return 0;
 }
