@@ -1,42 +1,57 @@
 #include <stdio.h>
 #include <string.h>
-typedef struct person {
-	int id, arv, srv, wait;
-}person;
-void waitingtime(person[], int);
-double avgtime(person[], int);
+typedef struct hotel {
+	char name[31], brf;
+	int grd;
+	double star, dst;
+}hotel;
+int in_hotel_info(hotel *);
+void out_hotel_info(hotel*, int,int, double);
 int main() {
-	person pr[100];
-	int i,n;
-	double avg;
-	scanf("%d", &n);
-	for (i = 0; i < n; i++) 
-		scanf("%d%d%d", &pr[i].id, &pr[i].arv, &pr[i].srv);
-	waitingtime(pr, n);
-	avg = avgtime(pr, n);
-	printf("%.2lf", avg);
+	hotel a[100];
+	int n,grd;
+	double dst;
+	n=in_hotel_info(a);
+	scanf("%d%lf", &grd, &dst);
+	out_hotel_info(a, n, grd, dst);
 }
-void waitingtime(person a[], int n) {
-	int i,tmp=0;
-	a[0].wait = 0;
-	tmp += a[0].srv;
-	for (i = 1; i < n; i++) {
-		if (tmp <= a[i].arv) {
-			a[i].wait = 0;
-			tmp = a[i].srv + a[i].arv;
-		}
-		else {
-			a[i].wait = tmp - a[i].arv;
-			tmp += a[i].srv;
-		}
+int in_hotel_info(hotel *a) {
+	int n = 0;
+	scanf("%s", &a->name);
+	while (strcmp(a->name, "0")) {
+		scanf("%d%lf%lf", &a->grd, &a->star, &a->dst);
+		getchar();
+		scanf("%c", &a->brf);
+		a++, n++;
+		scanf("%s", &a->name);
 	}
+	return n;
 }
-double avgtime(person a[], int n) {
-	int sum = 0, i;
-	double avg;
+void out_hotel_info(hotel*a, int n, int g,double d) {
+	int i,j=0;
+	double max=0;
+	hotel *pa,tmp[100], ttmp;
 	for (i = 0; i < n; i++) {
-		sum += a[i].wait;
+		if (((a + i)->grd >= g) && ((a + i)->dst <= d)) {
+			tmp[j] = *(a + i);
+			j++;
+		}
 	}
-	avg = (double)sum / n;
-	return avg;
+	for (i = j-1; i > 0; i--) {
+		for (pa = tmp; pa < tmp+i; pa++) {
+			if (pa->star > (pa + 1)->star) {
+				ttmp = *pa;
+				*pa = *(pa + 1);
+				*(pa + 1) = ttmp;
+			}
+			else if ((pa->star == (pa + 1)->star) && (strcmp(pa->name, (pa + 1)->name)<0) ) {
+				ttmp = *pa;
+				*pa = *(pa + 1);
+				*(pa + 1) = ttmp;
+			}
+		}
+	}
+	for (i = j - 1; i >= 0; i--) {
+		printf("%s %d %.1lf %.1lf %c\n", tmp[i].name, tmp[i].grd, tmp[i].star, tmp[i].dst, tmp[i].brf);
+	}
 }
