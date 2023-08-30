@@ -2,19 +2,15 @@
 #include <string.h>
 #include <stdlib.h>
 int main() {
-	float  *p, max;
-	int n, i; 
+	int n, i,d,*p; 
 	scanf("%d", &n);
-
-	p = (float  *)malloc(n * sizeof(float));
-	scanf("%f", &p[0]);
-	max = p[0];
-	for (i = 1; i < n; i++) {
-		scanf("%f", &p[i]);
-		if (max < p[i])
-			max = p[i];
-	}
-	printf("%.2f", max);
+	p = (int*)malloc(n * sizeof(int));
+	for (i = 0; i < n; i++)
+		scanf("%d", &p[i]);
+	scanf("%d", &d);
+	p = (int*)realloc(p, (n-d)*sizeof(int));
+	for (i = 0; i < n - d; i++)
+		printf("%d\n", p[i]);
 	free(p);
 	return 0;
 }
