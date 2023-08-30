@@ -1,57 +1,68 @@
 #include <stdio.h>
 #include <string.h>
-typedef struct hotel {
-	char name[31], brf;
-	int grd;
-	double star, dst;
-}hotel;
-int in_hotel_info(hotel *);
-void out_hotel_info(hotel*, int,int, double);
+typedef struct park {
+	int car, code, in_year, in_mon, in_day, in_hour, in_min, out_year, out_mon, out_day, out_hour, out_min;
+}park;
+int park_fee(park);
+int overlap(park*,int,int);
 int main() {
-	hotel a[100];
-	int n,grd;
-	double dst;
-	n=in_hotel_info(a);
-	scanf("%d%lf", &grd, &dst);
-	out_hotel_info(a, n, grd, dst);
-}
-int in_hotel_info(hotel *a) {
-	int n = 0;
-	scanf("%s", &a->name);
-	while (strcmp(a->name, "0")) {
-		scanf("%d%lf%lf", &a->grd, &a->star, &a->dst);
-		getchar();
-		scanf("%c", &a->brf);
-		a++, n++;
-		scanf("%s", &a->name);
-	}
-	return n;
-}
-void out_hotel_info(hotel*a, int n, int g,double d) {
-	int i,j=0;
-	double max=0;
-	hotel *pa,tmp[100], ttmp;
+	park a[100],tmp,*pa;
+	int n,i,n_ans,ans,flg,fee;
+	scanf("%d", &n);
 	for (i = 0; i < n; i++) {
-		if (((a + i)->grd >= g) && ((a + i)->dst <= d)) {
-			tmp[j] = *(a + i);
-			j++;
+		scanf("%d%d", &a[i].car, &a[i].code);
+		scanf("%d-%d-%d", &a[i].in_year, &a[i].in_mon, &a[i].in_day);
+		scanf("%d:%d", &a[i].in_hour, &a[i].in_min);
+		scanf("%d-%d-%d", &a[i].out_year, &a[i].out_mon, &a[i].out_day);
+		scanf("%d:%d", &a[i].out_hour, &a[i].out_min);
+	}
+	scanf("%d", &n_ans);
+	for (i = 0; i < n_ans; i++) {
+		scanf("%d", &ans);
+		flg=overlap(a, n, ans);
+		if (flg == 1)
+			printf("100000\n");
+		else {
+			for (pa = a; pa < a + n; pa++) 
+				if (ans == pa->car) {
+					tmp = *pa;
+					break;
+				}
+			fee=park_fee(tmp);
+			printf("%d\n", fee);
 		}
 	}
-	for (i = j-1; i > 0; i--) {
-		for (pa = tmp; pa < tmp+i; pa++) {
-			if (pa->star > (pa + 1)->star) {
-				ttmp = *pa;
-				*pa = *(pa + 1);
-				*(pa + 1) = ttmp;
-			}
-			else if ((pa->star == (pa + 1)->star) && (strcmp(pa->name, (pa + 1)->name)<0) ) {
-				ttmp = *pa;
-				*pa = *(pa + 1);
-				*(pa + 1) = ttmp;
-			}
-		}
+	return 0;
+}
+int park_fee(park a) {
+	int in, out, time;
+	in = a.in_hour * 60 + a.in_min;
+	out = a.out_hour * 60 + a.out_min;
+	time = out - in;
+	if (time <= 60)
+		return 3000;
+	else if (time <= 270) {
+		time -= 60;
+		if (time % 10 == 0)
+			return 3000 + (time / 10) * 1000;
+		else
+			return 3000 + ((time / 10) + 1) * 1000;
 	}
-	for (i = j - 1; i >= 0; i--) {
-		printf("%s %d %.1lf %.1lf %c\n", tmp[i].name, tmp[i].grd, tmp[i].star, tmp[i].dst, tmp[i].brf);
+	else
+		return 30000;
+}
+int overlap(park* a,int n, int car) {
+	park *pa;
+	int cnt = 0,code;
+	for (pa = a; pa < a + n; pa++) 
+		if (car == pa->car)
+			code = pa->code;
+	for (pa = a; pa < a + n; pa++) {
+		if (code == pa->code)
+			cnt++;
 	}
+	if (cnt > 1)
+		return 1;
+	else 
+		return 0;
 }
