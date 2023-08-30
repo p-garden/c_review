@@ -2,20 +2,27 @@
 #include <string.h>
 #include <stdlib.h>
 int main() {
-	int n,*a,*b,i;
+	int n, i,j;
+	char **a,tmp[101];
 	scanf("%d", &n);
-	a = (int*)malloc(n * sizeof(int));
-	for (i = 0; i < n; i++)
-		a[i] = i;
-	b = (int*)malloc((n - 1) * sizeof(int));
-	for (i = 0; i < n-1; i++) {
-		a[i] = i;
-		if (i >= n / 2)
-			a[i]++;
+	getchar();
+	a = (char**)malloc(n * sizeof(char*));
+	for (i = 0; i < n; i++) {
+		gets(tmp);
+		a[i] = (char*)malloc((strlen(tmp) + 1) * sizeof(char));
+		strcpy(a[i], tmp);
 	}
-	for (i = 0; i < n - 1; i++)
-		printf(" %d", a[i]);
+	for (i = n - 1; i > 0; i--) {
+		for (j = 0; j < i; j++) {
+			if (strcmp(a[j], a[j + 1]) > 0) {
+				strcpy(tmp, a[j]);
+				strcpy(a[j],a[j + 1]);
+				strcpy(a[j + 1] ,tmp);
+			}
+		}
+	}
+	for (i = 0; i < n; i++)
+		printf("%s\n", a[i]);
 	free(a);
-	free(b);
 	return 0;
 }
